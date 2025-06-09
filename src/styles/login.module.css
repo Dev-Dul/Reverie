@@ -52,8 +52,8 @@
 .error{
     position: absolute;
     bottom: -27px;
-    left: 15px;
     font-size: 0.7rem;
+    left: 15px;
 }
 
 .inputBox input:focus{
