@@ -1,33 +1,46 @@
 import { useState } from "react";
 import styles from '../styles/signup.module.css';
+import { useForm } from "react-hook-form";
 
 function SignUp(){
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    });
+
+    const { register, handleSubmit, formState: { errors }} = useForm();
 
     function handleChange(e){
         const { name, value } = e.target;
         setFormData(prev => ({...prev, [name]: value }));
     }
 
-    function handleSubmit(e){
-        e.preventDefault();
+    function onSubmit(data){
+        console.log("Submitted:", data);
     }
 
     return(
         <div className={styles.wrapper}>
-            <form action="" className={styles.form}>
+            <form action="" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <h2>Your Thoughts Have Found The perfect home.</h2>
                 <p className={styles.sub}>Join the sanctuary of thoughts today!</p>
                 <div className={styles.inputBox}>
                     <label htmlFor="username">Name</label>
-                    <input type="text" name="username" id="username" value={formData.username} onChange={handleChange} required/>
+                    <input type="text" name="username" id="username" {...register('username', {
+                        required: "Username is required",
+                        minLength: {
+                            value: 5,
+                            message: "Username must be at least 5 characters."
+                        }
+                    })}/>
+                    <p className={styles.error}>{errors.username?.message}</p>
                 </div>
                 <div className={styles.inputBox}>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" value={formData.password} onChange={handleChange}  required/>
+                    <input type="password" name="password" id="password" {...register('password', {
+                        required: "Password is required",
+                        minLength: {
+                            value: 6,
+                            message: "Password must be at least 6 characters."
+                        }   
+                    })}/>
+                    <p className={styles.error}>{errors.password?.message}</p>
                 </div>
                 <button type="submit">Sign Up</button>
             </form>

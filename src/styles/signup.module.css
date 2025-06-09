@@ -35,6 +35,7 @@
     justify-content: flex-start;
     flex-direction: column;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 
@@ -43,7 +44,21 @@
     width: 100%;
     outline: none;
     border: 1px solid;
+    text-indent: 10px;
     border-radius: 10px;
+    transition: all 0.8s ease;
+}
+
+.error{
+    position: absolute;
+    bottom: -30px;
+    font-size: 0.7rem;
+}
+
+.inputBox input:focus{
+    color: #333;
+    background: #f3f3f3;
+    border: 1px solid #333;
 }
 
 .form button{
