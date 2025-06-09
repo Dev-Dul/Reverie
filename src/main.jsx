@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import Home from './components/home.jsx'
-import Header from './components/header.jsx';
+import Profile from './components/profile.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Header />
+    <Profile />
   </StrictMode>,
 )
