@@ -2,7 +2,6 @@ import styles from '../styles/login.module.css';
 import { useForm } from "react-hook-form";
 
 function LogIn(){
-
     const { register, handleSubmit, formState: { errors }} = useForm();
 
     function onSubmit(data){
