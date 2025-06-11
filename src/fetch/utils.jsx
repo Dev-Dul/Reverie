@@ -167,7 +167,7 @@ export function useFetchPosts(){
                 const res = await fetch("http://localhost:3000/api/v1/blog/");
                 if(!res.ok) throw new Error('Failed to fetch');
                 const json = await res.json();
-                setData(json);
+                setData(json.posts);
             }catch(err){
                 setError(err.message);
             }finally{
