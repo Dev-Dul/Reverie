@@ -11,21 +11,31 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    box-sizing: border-box;
+    padding: 0 1.5rem;
+    justify-content: space-between;
 }
 
 .header nav h2{
+    cursor: pointer;
     font-size: 2rem;
 }
 
 .header nav ul{
-    width: 40%;
+    width: 50%;
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .header button{
     padding: 0.3rem 1.5rem;
+}
+
+
+@media screen and (min-width: 768px){
+    .header nav ul{
+        width: 35%;
+    }
 }

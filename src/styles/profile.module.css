@@ -1,5 +1,5 @@
 *{
-    border-radius: 1px solid;
+    /* border-radius: 1px solid; */
     box-sizing: border-box;
 }
 
@@ -70,14 +70,21 @@
 }
 
 .top button{
-    background: #f3f3f3;
+    background: hsl(0, 0%, 95%);
     color: black;
+    border: none;
     border-radius: 0px;
+    transition: all 0.8s ease;
 }
 
 .top button:hover{
-    border: 1px solid;
     border-radius: 0px;
+    border-bottom: 3px solid;
+}
+
+.top button:focus,
+.top button:focus-visible{
+    outline: none;
 }
 
 .tabs{
@@ -102,6 +109,5 @@
     background: black;
     opacity: 1;
     transform: translate(0);
-    /* animation: show 1.5s ease forwards; */
 }
 

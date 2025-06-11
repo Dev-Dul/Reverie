@@ -8,8 +8,9 @@
 
 .form{
     height: auto;
-    width: 300px;
+    width: 400px;
     padding: 2rem;
+    margin-top: 4rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;

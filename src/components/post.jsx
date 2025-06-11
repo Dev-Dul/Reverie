@@ -1,6 +1,25 @@
+import { useState } from "react";
 import styles from "../styles/post.module.css";
+import { useForm } from "react-hook-form";
 
 function Post() {
+  const [open, setOpen] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function onSubmit(data){
+    console.log("Submitted:", data);
+    setOpen(prev => !prev)
+  }
+
+  function handleOpen(){
+    setOpen(prev => !prev)
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>
@@ -27,10 +46,32 @@ function Post() {
         </div>
       </div>
       <div className={styles.comments}>
-        <h2>Comments</h2>
-        <div className={styles.comms}>
-            
+        <div className={styles.add}>
+          <h2>Comments</h2>
+          <button onClick={handleOpen}>Add a comment</button>
         </div>
+        <div className={`${styles.newCom} ${open ? styles.open : ''}`}>
+          <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.inputBox}>
+              <textarea
+                name="newCommen"
+                id="newCommen"
+                cols={31}
+                rows={10}
+                {...register("body", {
+                  required: "*Comment body is required",
+                  minLength: {
+                    value: 10,
+                    message: "*Comments needs to be at least 15 characters.",
+                  },
+                })}
+              ></textarea>
+              <p className={styles.error}>{errors.body?.message}</p>
+            </div>
+            <button type="submit">POST</button>
+          </form>
+        </div>
+        <div className={styles.comms}></div>
       </div>
     </div>
   );

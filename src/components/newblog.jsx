@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from '../styles/login.module.css';
 import { useForm } from "react-hook-form";
 
@@ -37,8 +36,8 @@ function NewBlog(){
             <label htmlFor="body">Body</label>
             <textarea
               id="body"
-              cols={29}
-              rows={10}
+              cols={32}
+              rows={8}
               {...register("body", {
                 required: "Post body is required",
                 minLength: {

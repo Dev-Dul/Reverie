@@ -26,3 +26,22 @@
     scrollbar-width: none;
     grid-template-columns: repeat(2, 1fr);
 }
+
+.add{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 768px){
+    .add{
+        height: 50px;
+        width: 50px;
+    }
+}
