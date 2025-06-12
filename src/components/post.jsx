@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { format } from "date-fns";
 import styles from "../styles/post.module.css";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
-import { useCreateComment } from "../fetch/utils";
+import { useLocation, useParams } from "react-router-dom";
+import { useCreateComment, useFetchPost } from "../fetch/utils";
 import Loader from "./loader";
 import Error from "./error";
+import Comment from "./comment";
 
 function Post(){
+  const { postId } = useParams();
   const [open, setOpen] = useState(false);
+  const { info, load, err, fetchData } = useFetchPost(Number(postId));
   const { data, loading, error, createComment } = useCreateComment();
-  const location = useLocation();
-  const { post } = location.state;
-  console.log(post);
+  console.log(info);
 
   const {
     register,
@@ -19,28 +21,36 @@ function Post(){
     formState: { errors },
   } = useForm();
 
-  function onSubmit(data){
+  async function onSubmit(data){
     console.log("Submitted:", data);
     setOpen(prev => !prev)
-    createComment(post.id, data.body, post.author.id);
+    await createComment(info.id, data.body, info.author.id);
+    fetchData(Number(info.id));
   }
 
   function handleOpen(){
     setOpen(prev => !prev)
   }
 
+  function formatDate(date){
+    const dt = new Date(date);
+    const formatted = format(dt, "do MMMM yyyy");
+    return formatted;
+  }
+
+  if(load) return <Loader />
+  if(err) return <Error message={err} />
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>
         <div className={styles.header}>
-          <h1>{post.title}</h1>
-          <p className="date">9th June 2025</p>
-          <p className="author">By: {post.author.username}</p>
+          <h1>{info.title}</h1>
+          <p className="date">{formatDate(info.created)}</p>
+          <p className="author">By: {info.author.username}</p>
         </div>
         <div className={styles.body}>
-          <p>
-            {post.body}
-          </p>
+          <p>{info.body}</p>
         </div>
       </div>
       <div className={styles.comments}>
@@ -48,7 +58,7 @@ function Post(){
           <h2>Comments</h2>
           <button onClick={handleOpen}>Add a comment</button>
         </div>
-        <div className={`${styles.newCom} ${open ? styles.open : ''}`}>
+        <div className={`${styles.newCom} ${open ? styles.open : ""}`}>
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputBox}>
               <textarea
@@ -69,14 +79,10 @@ function Post(){
           </form>
         </div>
         <div className={styles.comms}>
-              {loading ? (
-                <Loader mini={true} />
-              ) : error ? (
-                <Error />
-              ) : (
-                <p>Comment Posted</p>
-              )}
-              
+          {error && <Error message={error} />}
+          {info.comments.map((comment) => (
+             <Comment key={comment.id} id={comment.id} body={comment.body} postId={info.id} />
+          ))}
         </div>
       </div>
     </div>

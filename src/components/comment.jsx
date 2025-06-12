@@ -1,18 +1,25 @@
+import { useContext } from 'react';
+import { useDeleteComment } from '../fetch/utils';
 import styles from '../styles/comment.module.css';
+import { AuthContext } from '../App';
 
-function Comment({ }){
+function Comment({ body, id }){
+  const { user } = useContext(AuthContext);
+  const { data, loading, error, delComment } = useDeleteComment();
+
+  function handleDelete(id){
+     delComment(id)
+  }
     return (
       <div className={styles.comm}>
         <h3>Comment 1</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
-          molestiae aliquam eaque iste deleniti voluptate sed nam earum, quod
-          totam.
-        </p>
-        <div className={styles.action}>
-          <button>Edit</button>
-          <button>Delete</button>
-        </div>
+        <p>{body}</p>
+        {user && (
+          <div className={styles.action}>
+            <button onClick={() => handleDelete(id)}>Edit</button>
+            <button>Delete</button>
+          </div>
+        )}
       </div>
     );
 }

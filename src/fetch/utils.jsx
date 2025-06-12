@@ -182,28 +182,29 @@ export function useFetchPosts(){
 }
 
 export function useFetchPost(id){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [info, setData] = useState(null);
+    const [load, setLoading] = useState(true);
+    const [err, setError] = useState(null);
 
-    useEffect(() => {
-        async function fetchData(id){
-            try{
-                const res = await fetch(`http://localhost:3000/api/v1/blog/${id}`);
-                if(!res.ok) throw new Error('Failed to fetch');
-                const json = await res.json();
-                setData(json.posts);
-            }catch(err){
-                setError(err.message);
-            }finally{
-                setLoading(false);
-            }
-        }
-    fetchData();
+    async function fetchData(id){
+      try{
+        const res = await fetch(`http://localhost:3000/api/v1/blog/${id}`);
+        if(!res.ok) throw new Error("Failed to fetch");
+        const json = await res.json();
+        setData(json.post);
 
+      }catch(err){
+        setError(err.message);
+      }finally{
+        setLoading(false);
+      }
+    }
+
+    useEffect(() => {    
+      fetchData(id);
     }, [])
 
-  return { data, loading, error };
+  return { info, load, err, fetchData };
 }
 
 
@@ -238,7 +239,7 @@ export function useCreatePost(){
       }
     }
 
-    return { data, loading, error };
+    return { data, loading, error, createPost };
 }
 
 export function useDeletePost(){
@@ -427,11 +428,11 @@ export function useEditComment(){
 
 
 export function useDeleteComment(){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [msg, setData] = useState(null);
+    const [ldg, setLoading] = useState(true);
+    const [errMsg, setError] = useState(null);
 
-    async function delComment(id, commentId) {
+    async function delComment(id, commentId){
       try{
         let res = await fetch(
           `http://localhost:3000/api/v1/blog/${id}/comments/${commentId}/delete`,
@@ -461,6 +462,6 @@ export function useDeleteComment(){
     }
 
 
-    return { data, loading, error, delComment };
+    return { msg, ldg, errMsg, delComment };
 }
 
