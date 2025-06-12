@@ -3,21 +3,22 @@ import styles from '../styles/signup.module.css';
 import { useForm } from "react-hook-form";
 import { useSignUp } from "../fetch/utils";
 import { toast } from "sonner";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function SignUp(){
     const { data, loading, error, SignUp } = useSignUp();
     const { register, handleSubmit, formState: { errors }} = useForm();
+    const navigate = useNavigate();
 
     
     async function onSubmit(formdata){
         await SignUp(formdata.username, formdata.password);
         if(data){
             toast.success(data);
-            <Navigate to={"/login"} />
+            navigate("/login");
         }
 
-        if(error) toast.error(error.message)
+        if(error) toast.error(error)
         console.log("Submitted:", formdata);
     }
 

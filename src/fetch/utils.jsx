@@ -392,9 +392,9 @@ export function useCreateComment(){
 
 
 export function useEditComment(){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [isEdit, setData] = useState(null);
+    const [editLoad, setLoading] = useState(true);
+    const [editErr, setError] = useState(null);
 
 
     async function editComment(id, commentId, commentBody) {
@@ -418,7 +418,10 @@ export function useEditComment(){
           res = await rerun(id, "editComment", commentId, commentBody);
         }
 
-        if(!res.ok) throw new Error("Edit Comment Failed!");
+        if(!res.ok){
+          const errData = await res.json();
+          throw new Error(errData);
+        } 
         const json = await res.json();
         setData(json);
       }catch(err){
@@ -428,7 +431,7 @@ export function useEditComment(){
       }
     }
 
-    return { data, loading, error, editComment };
+    return { isEdit, editLoad, editErr, editComment };
 }
 
 

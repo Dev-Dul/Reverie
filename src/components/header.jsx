@@ -10,9 +10,13 @@ function Header(){
         <header className={styles.header}>
             <nav>
                 <h2 onClick={() => navigate("/")}>Reverie</h2>
-                <ul className={user ? styles.logged : ''}>
+                <ul>
                     {user ? (
-                        <li><button onClick={() => navigate("/profile")}>Profile</button></li>
+                        <>
+                            <li><button onClick={() => navigate("/profile")}>Profile</button></li>
+                            <li><button onClick={() => navigate("/explore")}>Explore</button></li>
+                    
+                        </>
                     ): 
                      <>
                         <li><button onClick={() => navigate("/signup")}>Sign Up</button></li>

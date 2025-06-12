@@ -13,7 +13,6 @@ function Post(){
   const [open, setOpen] = useState(false);
   const { info, load, err, fetchData } = useFetchPost(Number(postId));
   const { data, loading, error, createComment } = useCreateComment();
-  console.log(info);
 
   const {
     register,
@@ -81,7 +80,7 @@ function Post(){
         <div className={styles.comms}>
           {error && <Error message={error} />}
           {info.comments.map((comment) => (
-             <Comment key={comment.id} id={comment.id} body={comment.body} postId={info.id} created={formatDate(comment.created)} />
+             <Comment key={comment.id} id={comment.id} body={comment.body} postId={info.id} created={formatDate(comment.created)} fetchData={fetchData} />
           ))}
         </div>
       </div>

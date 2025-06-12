@@ -3,7 +3,7 @@ import { useLogIn } from '../fetch/utils';
 import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { AuthContext } from '../App';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'sonner';
 
 function LogIn(){
@@ -13,7 +13,6 @@ function LogIn(){
     const navigate = useNavigate();
 
     async function onSubmit(formdata){
-        console.log("Submitted:", formdata);
         await logIn(formdata.username, formdata.password);
         if(data){
           toast.success(data.message);
@@ -22,7 +21,6 @@ function LogIn(){
         }
 
         if(error) toast.error(error.message);
-        console.log("Submitted:", formdata);
     }
 
     return(

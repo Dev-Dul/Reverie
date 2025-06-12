@@ -8,6 +8,18 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
 }
 
+.comm form{
+    height: auto;
+    width: 100%;
+}
+
+.comm form textarea{
+    width: 80%;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .commHeader{
     width: 100%;
     height: auto;
