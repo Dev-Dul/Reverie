@@ -1,6 +1,6 @@
 import styles from '../styles/comment.module.css';
 
-function Comment(){
+function Comment({ }){
     return (
       <div className={styles.comm}>
         <h3>Comment 1</h3>

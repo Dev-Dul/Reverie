@@ -181,6 +181,31 @@ export function useFetchPosts(){
   return { data, loading, error };
 }
 
+export function useFetchPost(id){
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchData(id){
+            try{
+                const res = await fetch(`http://localhost:3000/api/v1/blog/${id}`);
+                if(!res.ok) throw new Error('Failed to fetch');
+                const json = await res.json();
+                setData(json.posts);
+            }catch(err){
+                setError(err.message);
+            }finally{
+                setLoading(false);
+            }
+        }
+    fetchData();
+
+    }, [])
+
+  return { data, loading, error };
+}
+
 
 export function useCreatePost(){
     const [data, setData] = useState(null);

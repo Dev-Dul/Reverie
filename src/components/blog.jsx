@@ -28,7 +28,7 @@ function Blog(){
               <Preview
                 key={post.id}
                 title={post.title}
-                author={post.author}
+                author={post.author.username}
                 prev={post.body}
                 created={post.created}
               />

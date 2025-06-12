@@ -1,9 +1,17 @@
 import { useState } from "react";
 import styles from "../styles/post.module.css";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
+import { useCreateComment } from "../fetch/utils";
+import Loader from "./loader";
+import Error from "./error";
 
-function Post() {
+function Post(){
   const [open, setOpen] = useState(false);
+  const { data, loading, error, createComment } = useCreateComment();
+  const location = useLocation();
+  const { post } = location.state;
+  console.log(post);
 
   const {
     register,
@@ -14,6 +22,7 @@ function Post() {
   function onSubmit(data){
     console.log("Submitted:", data);
     setOpen(prev => !prev)
+    createComment(post.id, data.body, post.author.id);
   }
 
   function handleOpen(){
@@ -24,24 +33,13 @@ function Post() {
     <div className={styles.wrapper}>
       <div className={styles.text}>
         <div className={styles.header}>
-          <h1>Title</h1>
+          <h1>{post.title}</h1>
           <p className="date">9th June 2025</p>
-          <p className="author">By: Author</p>
+          <p className="author">By: {post.author.username}</p>
         </div>
         <div className={styles.body}>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum est
-            iusto, quasi quia incidunt, exercitationem magnam ad nemo eos
-            eveniet ducimus provident inventore ipsa mollitia repellendus maxime
-            error. Voluptatem expedita quasi ratione, omnis ipsam cupiditate
-            optio exercitationem facere saepe beatae ea pariatur rerum dolorum
-            aperiam quo quas! Porro magni corporis explicabo, ipsam aliquam quo,
-            libero distinctio natus, numquam aliquid nesciunt exercitationem
-            neque recusandae dolore! In voluptate doloremque ducimus iure
-            obcaecati, nemo, modi officia quis maxime rem reprehenderit neque
-            aliquid iste repellat sunt eveniet sapiente optio temporibus
-            corrupti. Accusamus necessitatibus corporis neque omnis alias quos,
-            a ratione excepturi laboriosam nihil eos.
+            {post.body}
           </p>
         </div>
       </div>
@@ -54,8 +52,7 @@ function Post() {
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputBox}>
               <textarea
-                name="newCommen"
-                id="newCommen"
+                id="newComment"
                 cols={31}
                 rows={10}
                 {...register("body", {
@@ -71,7 +68,16 @@ function Post() {
             <button type="submit">POST</button>
           </form>
         </div>
-        <div className={styles.comms}></div>
+        <div className={styles.comms}>
+              {loading ? (
+                <Loader mini={true} />
+              ) : error ? (
+                <Error />
+              ) : (
+                <p>Comment Posted</p>
+              )}
+              
+        </div>
       </div>
     </div>
   );
