@@ -81,7 +81,7 @@ function Post(){
         <div className={styles.comms}>
           {error && <Error message={error} />}
           {info.comments.map((comment) => (
-             <Comment key={comment.id} id={comment.id} body={comment.body} postId={info.id} />
+             <Comment key={comment.id} id={comment.id} body={comment.body} postId={info.id} created={formatDate(comment.created)} />
           ))}
         </div>
       </div>

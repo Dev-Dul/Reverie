@@ -20,7 +20,11 @@ export function useSignUp(){
           }),
         });
 
-        if(!res.ok) throw new Error("Sign Up Failed!");
+        console.log(res.status);
+        if(!res.ok){
+          const errData = await res.json();
+          throw new Error(errData.message);
+        } 
         const json = await res.json();
         setData(json);
       }catch(err){
@@ -55,7 +59,8 @@ export function useLogIn(){
         const json = await res.json();
         localStorage.setItem("jwt", json.token);
         localStorage.setItem("refresh", json.refreshToken);
-        setData(json.user);
+        setData(json);
+
       }catch(err){
         setError(err.message);
       }finally{

@@ -10,7 +10,7 @@ function Header(){
         <header className={styles.header}>
             <nav>
                 <h2 onClick={() => navigate("/")}>Reverie</h2>
-                <ul>
+                <ul className={user ? styles.logged : ''}>
                     {user ? (
                         <li><button onClick={() => navigate("/profile")}>Profile</button></li>
                     ): 

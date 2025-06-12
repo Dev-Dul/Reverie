@@ -1,18 +1,24 @@
 import { useState } from "react";
 import styles from '../styles/signup.module.css';
 import { useForm } from "react-hook-form";
+import { useSignUp } from "../fetch/utils";
+import { toast } from "sonner";
+import { Navigate } from "react-router-dom";
 
 function SignUp(){
-
+    const { data, loading, error, SignUp } = useSignUp();
     const { register, handleSubmit, formState: { errors }} = useForm();
 
-    function handleChange(e){
-        const { name, value } = e.target;
-        setFormData(prev => ({...prev, [name]: value }));
-    }
+    
+    async function onSubmit(formdata){
+        await SignUp(formdata.username, formdata.password);
+        if(data){
+            toast.success(data);
+            <Navigate to={"/login"} />
+        }
 
-    function onSubmit(data){
-        console.log("Submitted:", data);
+        if(error) toast.error(error.message)
+        console.log("Submitted:", formdata);
     }
 
     return(

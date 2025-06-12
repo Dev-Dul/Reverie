@@ -1,11 +1,28 @@
 import styles from '../styles/login.module.css';
+import { useLogIn } from '../fetch/utils';
 import { useForm } from "react-hook-form";
+import { useContext } from 'react';
+import { AuthContext } from '../App';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 function LogIn(){
+    const { handleUser } = useContext(AuthContext);
+    const {data, loading, error, logIn } = useLogIn();
     const { register, handleSubmit, formState: { errors }} = useForm();
+    const navigate = useNavigate();
 
-    function onSubmit(data){
-        console.log("Submitted:", data);
+    async function onSubmit(formdata){
+        console.log("Submitted:", formdata);
+        await logIn(formdata.username, formdata.password);
+        if(data){
+          toast.success(data.message);
+          handleUser(data.user);
+          navigate("/profile")
+        }
+
+        if(error) toast.error(error.message);
+        console.log("Submitted:", formdata);
     }
 
     return(

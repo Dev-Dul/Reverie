@@ -3,6 +3,7 @@ import './App.css';
 import { Outlet } from 'react-router-dom';
 import Header from './components/header';
 import { createContext } from 'react';
+import { Toaster } from 'sonner';
 
 export const AuthContext = createContext(null);
 
@@ -15,6 +16,7 @@ function App(){
 
   return (
      <AuthContext.Provider value={{ user, handleUser }}>
+       <Toaster richColors position='top-right'/>
        <Header />
        <Outlet />
      </AuthContext.Provider> 

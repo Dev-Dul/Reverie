@@ -3,7 +3,7 @@ import { useDeleteComment } from '../fetch/utils';
 import styles from '../styles/comment.module.css';
 import { AuthContext } from '../App';
 
-function Comment({ body, id }){
+function Comment({ body, id, created }){
   const { user } = useContext(AuthContext);
   const { data, loading, error, delComment } = useDeleteComment();
 
@@ -12,7 +12,10 @@ function Comment({ body, id }){
   }
     return (
       <div className={styles.comm}>
-        <h3>Comment 1</h3>
+        <div className={styles.commHeader}>
+          <h3>Comment 1</h3>
+          <p>{created}</p>
+        </div>
         <p>{body}</p>
         {user && (
           <div className={styles.action}>
