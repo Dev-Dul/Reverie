@@ -11,16 +11,20 @@ function LogIn(){
     const {data, loading, error, logIn } = useLogIn();
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
+    const successMessage = "Login Successful. Just a moment, \n as we redirect you to your profile";
 
     async function onSubmit(formdata){
-        await logIn(formdata.username, formdata.password);
+        toast.promise(logIn(formdata.username, formdata.password), {
+          loading: "Just a moment...",
+          success: successMessage,
+          error: "Login Failed.",
+        });
+
         if(data){
-          toast.success(data.message);
           handleUser(data.user);
-          navigate("/profile")
+          navigate("/profile");
         }
 
-        if(error) toast.error(error.message);
     }
 
     return(

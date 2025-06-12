@@ -43,7 +43,7 @@ function Comment({ body, id, postId, created, fetchData }){
       loading: "Deleting Comment...",
       success: "Comment Deleted Successfully",
       error: "Deleting Comment Failed.",
-    })
+    });
     fetchData(Number(postId));
   }
 
