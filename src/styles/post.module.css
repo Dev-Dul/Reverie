@@ -24,6 +24,12 @@
     margin-top: 15vh;
 }
 
+.header .delete{
+    position: absolute;
+    right: 80px;
+    top: 30px;
+}
+
 .header h1{
     margin-bottom: 0;
     font-size: 2rem;
@@ -44,6 +50,49 @@
     background: #9b9a9a;
     border-radius: 15px;
     margin-top: 40vh;
+    position: relative;
+    transition: all 0.8s ease;
+}
+
+.body form{
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    transition: all 0.8s ease;
+    /* flex-direction: column; */
+}
+
+.body form textarea{
+    height: auto;
+    width: 80%;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.body .action{
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+.body .action button{
+    padding: 0.3rem 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.edit{
+    position: absolute;
+    bottom: -30px;
+    z-index: 10;
+    right: 10px;
+    color: black;
+    border: 1px solid;
+    cursor: pointer;
 }
 
 .body p{
@@ -75,15 +124,6 @@
     /* animation: open 1s ease forwards; */
 }
 
-@keyframes open{
-    from{
-        display: none;
-        transform: translate(100vw);
-    }to{
-        display: block;
-        transform: translate(0);
-    }
-}
 
 .newCom form{
     height: auto;
@@ -127,9 +167,14 @@
 }
 
 
+.error.second{
+    left: 50px;
+}
+
 .comments{
     position: relative;
     text-align: left;
+    margin-top: 2rem;
 }
 
 .comms{
@@ -140,7 +185,6 @@
     gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
 }
-
 
 
 @media screen and (min-width: 768px){

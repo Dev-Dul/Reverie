@@ -38,7 +38,6 @@ function Comment({ body, id, postId, created, fetchData }){
   }
 
   function handleDelete(){
-    console.log("comment delete initiated");
     toast.promise(delComment(postId, id), {
       loading: "Deleting Comment...",
       success: "Comment Deleted Successfully",
@@ -61,11 +60,14 @@ function Comment({ body, id, postId, created, fetchData }){
                 required: "Comment Body is Required",
                 minLength: {
                   value: 10,
-                  message: "*Comments needs to be at least 15 characters.",
+                  message: "*Comments needs to be at least 10 characters.",
                 },
               })}
-            >{body}</textarea>
-            <div className={styles.action}>
+            >
+              {body}
+            </textarea>
+            <p className={styles.error}>{errors.editComment?.message}</p>
+            <div className={`${styles.action} ${styles.second}`}>
               <button type="button" onClick={closeEdit}>Close</button>
               <button type="submit">Submit</button>
             </div>

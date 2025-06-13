@@ -250,7 +250,7 @@ export function useCreatePost(){
 export function useDeletePost(){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [delError, setError] = useState(null);
 
 
     async function deletePost(id) {
@@ -282,7 +282,7 @@ export function useDeletePost(){
       }
     }
 
-    return { data, loading, error, deletePost };
+    return { data, loading, delError, deletePost };
 }
 
 export function useEditPost(){
