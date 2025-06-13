@@ -1,5 +1,4 @@
 *{
-    /* border-radius: 1px solid; */
     box-sizing: border-box;
 }
 
@@ -94,19 +93,18 @@
 }
 
 .tabContent{
-    height: 200px;
+    height: auto;
     width: 100%;
     position: absolute;
     transition: all 1s ease;
     transform: translateX(100vw);
 }
 
-.tabContent:first-of-type{
-    background: red;
+.tabContent h2{
+    font-size: 1.2rem;
 }
 
 .activate{
-    background: black;
     opacity: 1;
     transform: translate(0);
 }

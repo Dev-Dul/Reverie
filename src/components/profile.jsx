@@ -3,6 +3,9 @@ import styles from '../styles/profile.module.css';
 import { AuthContext } from '../App';
 import { Navigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import Preview from './preview';
+import Prev from './commentPrev';
+import { Link } from 'react-router-dom';
 
 function Profile(){
     const { user } = useContext(AuthContext);
@@ -17,11 +20,15 @@ function Profile(){
 
     function formatDate(date){
         const dt = new Date(date);
-        const formatted = format(dt, "do MMMM yyyy");
+        const formatted = format(dt, "do MMMM yyyy, h:mm a");
         return formatted;
     }
     
     if(!user) return <Navigate to="/login"  replace />
+    console.log(user);
+    const blogMatch = user.blogs.length === 0;
+    const Usercomments = user.blogs.comments ? user.blogs.flatMap(blog => blog.comments).filter(comment => comment.author === user.username) : [];
+    const commentMatch = Usercomments.length === 0;
 
     return (
         <div className={styles.wrapper}>
@@ -41,10 +48,36 @@ function Profile(){
                 </div>
                 <div className={styles.tab}>
                     <div className={`${styles.tabContent} ${tab === 0 ? styles.activate : ''}`}>
-
+                        {blogMatch ? (
+                            <h2>You have'nt written any Reveries yet.</h2>
+                        ): (
+                            <>
+                                {user.blogs.map((post) => (
+                                    <Link to={`/explore/posts/${post.id}`}>
+                                        <Preview
+                                            key={post.id}
+                                            title={post.title}
+                                            author={post.author.username}
+                                            prev={post.body}
+                                            created={post.created}
+                                            list={true}
+                                            published={post.published}
+                                        />
+                                    </Link>
+                                ))}
+                            </>
+                        )}
                     </div>
                     <div className={`${styles.tabContent} ${tab === 1 ? styles.activate : ''}`}>
-
+                        {commentMatch ? (
+                            <h2>You have'nt written any comments yet!</h2>
+                        ): (
+                            <>
+                                {Usercomments.map((comment) => (
+                                    <Prev created={comment.created} body={comment.body}/>
+                                ))}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

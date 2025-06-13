@@ -350,7 +350,7 @@ export function useCreateComment(){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    async function createComment(id, body, authorId) {
+    async function createComment(id, body, author) {
       try {
         const res = await fetch(
           `http://localhost:3000/api/v1/blog/${id}/comments/create`,
@@ -361,7 +361,7 @@ export function useCreateComment(){
             },
             body: JSON.stringify({
               body: body,
-              authorId: authorId,
+              author: author,
             }),
           }
         );

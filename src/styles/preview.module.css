@@ -4,7 +4,7 @@
     justify-content: flex-end;
     flex-direction: column;
     padding: 1rem;
-
+    position: relative;
 }
 
 .preview{
@@ -17,6 +17,12 @@
 .prev{
     height: auto;
     width: 100%;
+    border-bottom: 0.5px solid;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.prev >*{
+    margin: 0;
 }
 
 .preview h2{
@@ -30,6 +36,15 @@
     margin: 0;
 }
 
+
+.published{
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    padding: 0.2rem 0.5rem;
+    background: black;
+    border-radius: 10px;
+}
 
 .peek{
     opacity: 0.75;

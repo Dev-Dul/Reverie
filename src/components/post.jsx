@@ -57,8 +57,9 @@ function Post(){
 
   async function onSubmit(data){
     console.log("Submitted:", data);
-    setOpen(prev => !prev)
-    await createComment(info.id, data.body, info.author.id);
+    setOpen(prev => !prev);
+    const author = user ? user.username : data.author + "(Guest)";
+    await createComment(info.id, data.body, author);
     fetchData(Number(info.id));
   }
 
@@ -127,6 +128,16 @@ function Post(){
         </div>
         <div className={`${styles.newCom} ${open ? styles.open : ""}`}>
           <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.inputBox}>
+              <input type="text" id="author" placeholder={"Your Name"} {...register("author", {
+                  required: "*Comment Author is Required",
+                  minLength: {
+                    value: 5,
+                    message: "*Name has to be at least 5 characters.",
+                  },
+              })}/>
+              <p className={styles.error}>{errors.author?.message}</p>
+            </div>
             <div className={styles.inputBox}>
               <textarea
                 id="newComment"

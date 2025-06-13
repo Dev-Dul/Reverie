@@ -31,6 +31,7 @@ function Blog(){
                 author={post.author.username}
                 prev={post.body}
                 created={post.created}
+                published={post.published}
               />
             </Link>
           ))}
