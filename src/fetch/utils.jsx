@@ -38,10 +38,6 @@ export function useSignUp(){
 }
 
 export function useLogIn(){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    
     async function logIn(username, password){
       try {
         const res = await fetch("http://localhost:3000/api/v1/login", {
@@ -59,16 +55,16 @@ export function useLogIn(){
         const json = await res.json();
         localStorage.setItem("jwt", json.token);
         localStorage.setItem("refresh", json.refreshToken);
-        setData(json);
+        console.log("response received");
+        console.log(json);
+        return json;
 
       }catch(err){
-        setError(err.message);
-      }finally{
-        setLoading(false);
+        throw err;
       }
     }
     
-    return { data, loading, error, logIn };
+    return { logIn };
 }
 
 
@@ -214,11 +210,6 @@ export function useFetchPost(id){
 
 
 export function useCreatePost(){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    
-
     async function createPost(title, text, id) {
       try {
         let res = await fetch("http://localhost:3000/api/v1/blog/create", {
@@ -235,16 +226,14 @@ export function useCreatePost(){
 
         if(!res.ok) throw new Error("Create Post Failed!");
         const json = await res.json();
-        setData(json);
+        return json;
 
       }catch(err){
-        setError(err.message);
-      }finally{
-        setLoading(false);
+        throw err;
       }
     }
 
-    return { data, loading, error, createPost };
+    return { createPost };
 }
 
 export function useDeletePost(){

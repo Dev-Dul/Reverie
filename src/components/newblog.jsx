@@ -1,8 +1,16 @@
+import { useContext } from 'react';
 import styles from '../styles/login.module.css';
 import { useForm } from "react-hook-form";
+import { AuthContext } from '../App';
+import { useCreatePost } from '../fetch/utils';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 
 function NewBlog(){
+    const { user } = useContext(AuthContext);
+    const { createPost } = useCreatePost();
+    const navigate = useNavigate();
     const {
       register,
       handleSubmit,
@@ -11,6 +19,19 @@ function NewBlog(){
 
     function onSubmit(data) {
       console.log("Submitted:", data);
+      const createPostPromise =  createPost(data.title, data.body, user.id);
+      toast.promise(createPostPromise, {
+        loading: "Creating Post...",
+        success: (result) => {
+          if(result){
+            navigate("/explore");
+            return "Post Created Successfully";
+           }
+        },
+        error: (err) => {
+            return `Create Post Failed, ${err.message}`;
+        },
+      });
     }
 
     return (

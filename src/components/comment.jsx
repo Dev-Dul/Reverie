@@ -32,7 +32,7 @@ function Comment({ body, id, postId, created, fetchData }){
       loading: "Editing Comment...",
       success: "Comment Edited Successfully",
       error: "Comment Edit Failed",
-    })
+    });
     fetchData(Number(postId));
     closeEdit();
   }

@@ -1,12 +1,18 @@
 import styles from "../styles/preview.module.css";
+import { format } from "date-fns";
 
-function Preview({ title, prev, author, created }){
+function Preview({ title, prev, author, created, list = false }){
+    function formatDate(date){
+        const dt = new Date(date);
+        const formatted = format(dt, "do MMMM yyyy");
+        return formatted;
+      }
     return (
-        <div className={styles.preview}>
-            <p className={styles.peek}>{prev}</p>
+        <div className={list ? styles.prev : styles.preview}>
+            {!list && <p className={styles.peek}>{prev}</p>}
             <h2>{title}</h2>
             <p>{author}</p>
-            <p>{created}</p>
+            <p>{formatDate(created)}</p>
         </div>
     )
 }

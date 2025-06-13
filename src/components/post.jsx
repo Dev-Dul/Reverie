@@ -49,7 +49,7 @@ function Post(){
       success: "Post Deleted Successfully",
       error: "Deleting Post Failed.",
     });
-    
+
     if(!delError){
       navigate("/explore");
     }
@@ -88,7 +88,7 @@ function Post(){
     <div className={styles.wrapper}>
       <div className={styles.text}>
         <div className={styles.header}>
-          <div className={styles.delete}>Delete</div>
+          <div className={styles.delete} onClick={handleDelete}>Delete</div>
           <h1>{info.title}</h1>
           <p className="date">{formatDate(info.created)}</p>
           <p className="author">By: {info.author.username}</p>
@@ -101,8 +101,8 @@ function Post(){
                 {...registerEdit("edited", {
                   required: "Post body is required",
                   minLength: {
-                    value: 25,
-                    message: "*Post body must be at least 25 characters",
+                    value: 50,
+                    message: "*Post body must be at least 50 characters",
                   },
                 })}
               >
