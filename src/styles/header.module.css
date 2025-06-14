@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "flowers";
+    src: url("../assets/Fonts/SpringtimeFlowersRegular-8M1mz.otf");
+}
+
 .header{
     height: 10vh;
     width: 100%;
@@ -17,8 +22,9 @@
 }
 
 .header nav h2{
+    font-family: "flowers";
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 3.5rem;
 }
 
 .header nav ul{
@@ -35,7 +41,8 @@ header nav ul.logged{
 }
 
 .header button{
-    padding: 0.3rem 1.5rem;
+    padding: 0.2rem 1.5rem;
+    font-size: 1.2rem;
 }
 
 

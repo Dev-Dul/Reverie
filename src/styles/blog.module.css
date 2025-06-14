@@ -18,6 +18,11 @@
     border-bottom: 3px solid black;
 }
 
+.header h2{
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
 .posts{
     height: auto;
     width: 100%;
@@ -38,6 +43,9 @@
     border: 1px solid;
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

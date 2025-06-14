@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "ketta";
+    src: url("../assets/Fonts/HelloKetta-d99oX.ttf");
+}
+
 *{
     box-sizing: border-box;
 }
@@ -78,6 +83,9 @@
     width: 80%;
     padding: 1rem;
     border-radius: 20px;
+    font-family: "ketta";
+    font-size: 1.5rem;
+    letter-spacing: 0.8px;
 }
 
 .body .action{
@@ -90,8 +98,9 @@
 
 
 .body .action button{
-    padding: 0.3rem 1rem;
+    padding: 0.1rem 1rem;
     margin-bottom: 0.5rem;
+    font-size: 1.3rem;
 }
 
 .edit{
@@ -105,6 +114,9 @@
 
 .body p{
     text-align: justify;
+    font-family: "ketta";
+    font-size: 1.5rem;
+    letter-spacing: 0.8px;
 }
 
 .add{
@@ -146,24 +158,34 @@
     position: relative;
     width: 100%;
     height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.inputBox input{
+    height: 2rem;
+    width: 90%;
+    border-radius: 10px;
+    text-indent: 10px;
+    transition: all 0.8s ease;
 }
 
 .newCom form textarea{
     text-indent: 10px;
     border-radius: 10px;
-    margin-bottom: 1.5rem;
     padding: 1rem;
     transition: all 0.8s ease;
 }
 
 
-.newCom form textarea:focus{
+.newCom form textarea:focus,
+.newCom .inputBox input:focus{
     color: #333;
     background: #f3f3f3;
 }
 
 .newCom form button{
-    padding: 0.5rem 3rem;
+    font-size: 0.9rem;
+    padding: 0.3rem 1rem;
 }
 
 .error{

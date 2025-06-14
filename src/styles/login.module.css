@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "chicanos";
+    src: url("../assets/Fonts/ChicanosPersonalUseRegular-qZDw5.ttf");
+}
+
 .wrapper{
     min-height: 100vh;
     width: 100%;
@@ -20,12 +25,20 @@
 }
 
 .form h2{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+    font-family: "chicanos";
+}
+
+.form label{
     font-size: 1.3rem;
-    margin-bottom: 1rem;
 }
 
 .sub{
     margin-top: 0;
+    font-size: 1.3rem;
+    margin-bottom: 0;
 }
 
 .inputBox{

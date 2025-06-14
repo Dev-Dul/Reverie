@@ -1,6 +1,7 @@
 import styles from '../styles/blog.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFetchPosts } from '../fetch/utils';
+import { Plus } from "lucide-react";
 import Preview from './preview';
 import Loader from './loader';
 import Error from './error';
@@ -18,7 +19,9 @@ function Blog(){
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.add} onClick={goToCreate}></div>
+        <div className={styles.add} onClick={goToCreate}>
+          <Plus size={35} />
+        </div>
         <div className={styles.header}>
           <h2>Explore Reverie</h2>
         </div>
