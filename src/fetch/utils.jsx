@@ -313,10 +313,6 @@ export function useEditPost(){
 
 
 export function UsePublishPost(){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
     async function publishPost(id){
       try{
         const res = await fetch(
@@ -331,16 +327,13 @@ export function UsePublishPost(){
 
         if(!res.ok) throw new Error("Publish Post Failed!");
         const json = await res.json();
-        setData(json);
-
+        return json;
       }catch(err){
-        setError(err.message);
-      }finally{
-        setLoading(false);
+        throw err;
       }
     }
 
-    return { data, loading, error, publishPost };
+    return { publishPost };
 }
 
 

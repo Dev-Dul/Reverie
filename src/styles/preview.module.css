@@ -5,10 +5,11 @@
     flex-direction: column;
     padding: 1rem;
     position: relative;
+    overflow: hidden;
 }
 
 .preview{
-    height: 300px;
+    height: 250px;
     width: 100%;
     border-radius: 20px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
@@ -48,10 +49,13 @@
 
 .peek{
     opacity: 0.75;
-    display: --webkit-box;
-    --webkit-line-clamp: 5;
-    --webkit-box-orient: vertical;
-    overflow: hidden;
+    margin: 0;
     text-align: justify;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
+}
+
+@media screen and (min-width: 768px){
+    .preview{
+        height: 200px;
+    }
 }

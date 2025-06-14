@@ -3,8 +3,9 @@ import { useContext, useState } from "react";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useCreateComment, useDeletePost, useEditPost, useFetchPost } from "../fetch/utils";
+import { useCreateComment, useDeletePost, useEditPost, useFetchPost, UsePublishPost } from "../fetch/utils";
 import { toast } from "sonner";
+import { Pencil, Trash2 } from "lucide-react";
 import Loader from "./loader";
 import Error from "./error";
 import Comment from "./comment";
@@ -19,6 +20,7 @@ function Post(){
   const { data, loading, error, createComment } = useCreateComment();
   const { editPost } = useEditPost();
   const { delError, deletePost } = useDeletePost();
+  const { publishPost } = UsePublishPost();
   const navigate = useNavigate();
 
   const {
@@ -55,6 +57,23 @@ function Post(){
     }
   }
 
+  async function onPublish(){
+    const publishPromise = publishPost(info.id);
+    toast.promise(publishPromise, {
+      loading: "Publishing Post...",
+      success: (response) => {
+        if(response){
+          fetchData(Number(postId));
+          return response.message;
+        }
+      },
+
+      error: (err) => {
+        return `Publishing Post Failed, ${err.message}`
+      }
+    })
+  }
+
   async function onSubmit(data){
     console.log("Submitted:", data);
     setOpen(prev => !prev);
@@ -89,7 +108,12 @@ function Post(){
     <div className={styles.wrapper}>
       <div className={styles.text}>
         <div className={styles.header}>
-          <div className={styles.delete} onClick={handleDelete}>Delete</div>
+          {user && (
+            <div className={`${styles.danger} ${info.published ? styles.pub : ""}`}>
+              {!info.published && <button onClick={onPublish}>Publish</button>}
+              <div className={styles.delete} onClick={handleDelete}><Trash2 size={20} /></div>
+            </div>
+          )}
           <h1>{info.title}</h1>
           <p className="date">{formatDate(info.created)}</p>
           <p className="author">By: {info.author.username}</p>
@@ -109,16 +133,22 @@ function Post(){
               >
                 {info.body}
               </textarea>
-              <p className={`${styles.error} ${styles.second}`}>{editErrors.edited?.message}</p>
-              <div className={styles.action}> 
+              <p className={`${styles.error} ${styles.second}`}>
+                {editErrors.edited?.message}
+              </p>
+              <div className={styles.action}>
                 <button type="submit">Post</button>
-                <button type="button" onClick={closeEdit}>Close</button>
+                <button type="button" onClick={closeEdit}>
+                  Close
+                </button>
               </div>
             </form>
           ) : (
             <p>{info.body}</p>
           )}
-          <div className={styles.edit} onClick={openEdit}>Edit</div>
+          <div className={styles.edit} onClick={openEdit}>
+            <Pencil size={20} />
+          </div>
         </div>
       </div>
       <div className={styles.comments}>
@@ -129,13 +159,18 @@ function Post(){
         <div className={`${styles.newCom} ${open ? styles.open : ""}`}>
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputBox}>
-              <input type="text" id="author" placeholder={"Your Name"} {...register("author", {
+              <input
+                type="text"
+                id="author"
+                placeholder={"Your Name"}
+                {...register("author", {
                   required: "*Comment Author is Required",
                   minLength: {
                     value: 5,
                     message: "*Name has to be at least 5 characters.",
                   },
-              })}/>
+                })}
+              />
               <p className={styles.error}>{errors.author?.message}</p>
             </div>
             <div className={styles.inputBox}>
