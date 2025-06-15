@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@multiavatar/multiavatar": "^1.0.7",
     "@re-dev/react-truncate": "^0.5.1",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.6.3",
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",
+    "react-responsive": "^10.0.1",
     "react-router-dom": "^7.6.2",
     "sonner": "^2.0.5"
   },

@@ -32,8 +32,13 @@
     height: 150px;
     width: 150px;
     border-radius: 50%;
-    border: 1px solid;
+    border: 3px solid;
     transform: translate(-50%, -50%);
+}
+
+.pfp img{
+    height: 100%;
+    width: 100%;
 }
 
 .back, .deets{

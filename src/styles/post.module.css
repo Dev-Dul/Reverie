@@ -18,7 +18,7 @@
 }
 
 .header{
-    height: 30vh;
+    height: 20vh;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -26,7 +26,10 @@
     flex-direction: column;
     position: fixed;
     top: 0;
+    z-index: 10;
     margin-top: 15vh;
+    background: transparent;
+    backdrop-filter: blur(5px);
 }
 
 .header .danger{
@@ -105,7 +108,7 @@
 
 .edit{
     position: absolute;
-    bottom: -30px;
+    bottom: -40px;
     z-index: 10;
     right: 10px;
     color: black;
@@ -126,6 +129,15 @@
     justify-content: space-between;
 }
 
+.add h2{
+    font-size: 1.5rem;
+}
+
+.add button{
+    font-size: 1.5rem;
+    padding: 0 1rem;
+}
+
 .newCom{
     height: auto;
     position: absolute;
@@ -140,7 +152,6 @@
 .open{
     position: static;
     transform: translate(0);
-    /* animation: open 1s ease forwards; */
 }
 
 
@@ -151,6 +162,14 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
+}
+
+.newCom .action{
+    width: 100%;
+}
+
+.newCom .action button{
+    margin-right: 1rem;
 }
 
 
@@ -184,6 +203,7 @@
 }
 
 .newCom form button{
+    text-transform: uppercase;
     font-size: 0.9rem;
     padding: 0.3rem 1rem;
 }
@@ -223,5 +243,20 @@
 
     .comms{
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .newCom form textarea{
+        width: 90%;
+    }
+}
+
+
+@media screen and (max-width: 468px){
+    .comms{
+        grid-template-columns: 1fr;
+    }
+
+    .newCom{
+        width: 80vw;
     }
 }

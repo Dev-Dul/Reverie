@@ -5,6 +5,8 @@ import { AuthContext } from '../App';
 import { useCreatePost } from '../fetch/utils';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import three from "../assets/Img/three.png";
+import two from "../assets/Img/two.png";
 
 
 function NewBlog(){
@@ -18,7 +20,6 @@ function NewBlog(){
     } = useForm();
 
     function onSubmit(data) {
-      console.log("Submitted:", data);
       const createPostPromise =  createPost(data.title, data.body, user.id);
       toast.promise(createPostPromise, {
         loading: "Creating Post...",
@@ -37,6 +38,8 @@ function NewBlog(){
     return (
       <div className={styles.wrapper}>
         <form action="" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <img src={three} className={styles.ten}/>
+          <img src={two} className={styles.two}/>
           <h2>Write A New Reverie</h2>
           <div className={styles.inputBox}>
             <label htmlFor="title">Title</label>

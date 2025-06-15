@@ -109,9 +109,13 @@ function Post(){
       <div className={styles.text}>
         <div className={styles.header}>
           {user && (
-            <div className={`${styles.danger} ${info.published ? styles.pub : ""}`}>
+            <div
+              className={`${styles.danger} ${info.published ? styles.pub : ""}`}
+            >
               {!info.published && <button onClick={onPublish}>Publish</button>}
-              <div className={styles.delete} onClick={handleDelete}><Trash2 size={20} /></div>
+              <div className={styles.delete} onClick={handleDelete}>
+                <Trash2 size={20} />
+              </div>
             </div>
           )}
           <h1>{info.title}</h1>
@@ -188,7 +192,10 @@ function Post(){
               ></textarea>
               <p className={styles.error}>{errors.body?.message}</p>
             </div>
-            <button type="submit">POST</button>
+            <div className={styles.action}>
+              <button type="buttom" onClick={handleOpen}>Close</button>
+              <button type="submit">POST</button>
+            </div>
           </form>
         </div>
         <div className={styles.comms}>
@@ -200,6 +207,7 @@ function Post(){
               body={comment.body}
               postId={info.id}
               created={formatDate(comment.created)}
+              author={comment.author}
               fetchData={fetchData}
             />
           ))}

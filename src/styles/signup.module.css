@@ -9,7 +9,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
 }
+
 
 .form{
     height: auto;
@@ -21,7 +24,24 @@
     justify-content: flex-start;
     flex-direction: column;
     border-radius: 15px;
+    position: relative;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.one{
+    position: absolute;
+    top: -4rem;
+    left: -3rem;
+    z-index: 10;
+    width: 150px;
+}
+
+.nine{
+    position: absolute;
+    right: -5rem;
+    bottom: 0;
+    z-index: 10;
+    width: 200px;
 }
 
 .form h2{

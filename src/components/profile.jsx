@@ -1,11 +1,12 @@
-import { useContext, useState } from 'react';
 import styles from '../styles/profile.module.css';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../App';
 import { Navigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 import Preview from './preview';
 import Prev from './commentPrev';
-import { Link } from 'react-router-dom';
+import multiavatar from '@multiavatar/multiavatar';
 
 function Profile(){
     const { user } = useContext(AuthContext);
@@ -26,6 +27,8 @@ function Profile(){
     
     if(!user) return <Navigate to="/login"  replace />
     console.log(user);
+    const svg = multiavatar(user.username);
+    const dataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     const blogMatch = user.blogs.length === 0;
     const Usercomments = user.blogs.comments ? user.blogs.flatMap(blog => blog.comments).filter(comment => comment.author === user.username) : [];
     const commentMatch = Usercomments.length === 0;
@@ -34,7 +37,9 @@ function Profile(){
         <div className={styles.wrapper}>
             <div className={styles.hero}>
                 <div className={styles.back}></div>
-                <div className={styles.pfp}></div>
+                <div className={styles.pfp}>
+                    <img src={dataUrl} alt="Avatar" />
+                </div>
                 <div className={styles.deets}>
                     <h2>{user.username}</h2>
                     <p>Blogs Posted: {user.blogs.length}</p>
@@ -53,7 +58,7 @@ function Profile(){
                         ): (
                             <>
                                 {user.blogs.map((post) => (
-                                    <Link to={`/explore/posts/${post.id}`}>
+                                    <Link to={`/explore/posts/${post.id}`} style={{color: '#030303'}}>
                                         <Preview
                                             key={post.id}
                                             title={post.title}

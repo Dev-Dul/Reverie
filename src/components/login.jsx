@@ -3,8 +3,10 @@ import { useLogIn } from '../fetch/utils';
 import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { AuthContext } from '../App';
-import { useNavigate, useLocation, replace } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'sonner';
+import two from "../assets/Img/two.png";
+import ten from "../assets/Img/ten.png";
 
 function LogIn(){
     const { handleUser } = useContext(AuthContext);
@@ -40,6 +42,8 @@ function LogIn(){
     return(
         <div className={styles.wrapper}>
             <form action="" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                <img src={ten} className={styles.ten} />
+                <img src={two} className={styles.two} />
                 <h2>Welcome back to Reverie, <br /> the sanctuary of thoughts.</h2>
                 <p className={styles.sub}>Login to continue to your account</p>
                 <div className={styles.inputBox}>

@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { useSignUp } from "../fetch/utils";
 import { toast } from "sonner";
 import { Navigate, useNavigate } from "react-router-dom";
+import nine from  "../assets/Img/nine.png";
+import one from  "../assets/Img/one.png";
 
 function SignUp(){
     const { data, loading, error, SignUp } = useSignUp();
@@ -25,6 +27,8 @@ function SignUp(){
     return(
         <div className={styles.wrapper}>
             <form action="" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                <img src={one} className={styles.one}/>
+                <img src={nine} className={styles.nine}/>
                 <h2>Your Thoughts Have Found The perfect home.</h2>
                 <p className={styles.sub}>Join the sanctuary of thoughts today!</p>
                 <div className={styles.inputBox}>

@@ -27,7 +27,7 @@ function Blog(){
         </div>
         <div className={styles.posts}>
           {data.map((post) => (
-            <Link to={`/explore/posts/${post.id}`}>
+            <Link to={`/explore/posts/${post.id}`} style={{ color: '#030303'}}>
               <Preview
                 key={post.id}
                 title={post.title}
