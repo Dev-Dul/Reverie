@@ -47,8 +47,20 @@
 }
 
 .back{
-    border: 1px solid;
-    border-radius: 20px;
+    border: 2px solid;
+    border-radius: 25px;
+}
+
+.back img{
+    height: 100%;
+    width: 100%;
+    border-radius: 25px;
+    filter: grayscale(100%);
+    transition: all 1s ease;
+}
+
+.back img:hover{
+    filter: grayscale(0%);
 }
 
 .deets{

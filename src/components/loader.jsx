@@ -1,9 +1,11 @@
 import styles from "../styles/loader.module.css";
+import butterfly from "../assets/Img/butterfly.gif";
 
 function Loader({ mini = '' }){
     return (
         <div className={`${styles.loader} ${mini ? styles.mini : ''}`}>
-            <div className="spinner">Loading</div>
+            <img src={butterfly} alt="Loader" />
+            <div className="spinner">Loading...</div>
         </div>
     )
 }

@@ -4,6 +4,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.loader img{
+    height: 300px;
+    width: 300px;
+}
+
+.loader div{
+    font-size: 1.5rem;
 }
 
 .loader.mini{

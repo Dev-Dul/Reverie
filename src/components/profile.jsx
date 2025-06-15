@@ -4,9 +4,10 @@ import { AuthContext } from '../App';
 import { Navigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import multiavatar from '@multiavatar/multiavatar';
 import Preview from './preview';
 import Prev from './commentPrev';
-import multiavatar from '@multiavatar/multiavatar';
+import Images from './images';
 
 function Profile(){
     const { user } = useContext(AuthContext);
@@ -30,13 +31,17 @@ function Profile(){
     const svg = multiavatar(user.username);
     const dataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     const blogMatch = user.blogs.length === 0;
-    const Usercomments = user.blogs.comments ? user.blogs.flatMap(blog => blog.comments).filter(comment => comment.author === user.username) : [];
+    const Usercomments = user.blogs.comments  ? user.blogs.flatMap(blog => blog.comments).filter(comment => comment.author === user.username) : [];
+    console.log(user.blogs.body);
     const commentMatch = Usercomments.length === 0;
+    const ImgIndex = Math.floor(Math.random() * Images.length);
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.hero}>
-                <div className={styles.back}></div>
+                <div className={styles.back}>
+                    <img src={Images[ImgIndex]}/>
+                </div>
                 <div className={styles.pfp}>
                     <img src={dataUrl} alt="Avatar" />
                 </div>
