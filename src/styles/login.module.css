@@ -82,6 +82,7 @@
 
 
 .inputBox textarea{
+    color: #333;
     text-indent: 10px;
     border-radius: 10px;
     padding: 0.5rem;

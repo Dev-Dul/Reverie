@@ -11,7 +11,7 @@ This project is part of the Odin Project's Curriculum. It is meant for learners 
 ## Features
    Features of Reverie include:
 
-   * Sleek Minimalist UI - I've taken the time to build a sleek, minimalisic UI for Reverie that feels easy on the eyes while at the same time being aesthetically pleasing. The UI is also 100% mobile responsive.
+   * Sleek Minimalist UI - I've taken the time to build a sleek, minimalistic UI for Reverie that feels easy on the eyes while at the same time being aesthetically pleasing. The UI is also 100% mobile responsive.
 
    * User Account - Reverie has a sign up page that allows users to create accounts, login and access privileges such as editing, publishing and deleting blog posts and comments. 
 
@@ -54,6 +54,8 @@ This project is part of the Odin Project's Curriculum. It is meant for learners 
    ## Vist
 
    Kindly use the link below to visit Reverie:
+
+   https://myreverie.netlify.app
 
 
 
