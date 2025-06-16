@@ -7,6 +7,7 @@ import LogIn from "./components/login";
 import Profile from "./components/profile";
 import ErrorPage from "./components/errorpage";
 import Post from "./components/post";
+import About from "./components/about";
 
 const routes = [
   {
@@ -19,6 +20,7 @@ const routes = [
       { path: "/signup", element: <SignUp />, },
       { path: "/login", element: <LogIn />, },
       { path: "/profile", element: <Profile />, },
+      { path: "/about", element: <About />, },
       { path: "/explore/create", element: <NewBlog />, },
       { path: "/explore/posts/:postId", element: <Post />, }
     ],

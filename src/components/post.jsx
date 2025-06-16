@@ -75,7 +75,6 @@ function Post(){
   }
 
   async function onSubmit(data){
-    console.log("Submitted:", data);
     setOpen(prev => !prev);
     const author = user ? user.username : data.author + "(Guest)";
     await createComment(info.id, data.body, author);
@@ -103,12 +102,14 @@ function Post(){
 
   if(load) return <Loader />
   if(err) return <Error message={err} />
+  console.log(info);
+  const isUser = user ? info.authorId === user.id : null;
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>
         <div className={styles.header}>
-          {user && (
+          {isUser && (
             <div
               className={`${styles.danger} ${info.published ? styles.pub : ""}`}
             >
@@ -150,9 +151,11 @@ function Post(){
           ) : (
             <p>{info.body}</p>
           )}
-          <div className={styles.edit} onClick={openEdit}>
-            <Pencil size={20} />
-          </div>
+          {isUser && (
+            <div className={styles.edit} onClick={openEdit}>
+              <Pencil size={20} />
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.comments}>
@@ -193,7 +196,9 @@ function Post(){
               <p className={styles.error}>{errors.body?.message}</p>
             </div>
             <div className={styles.action}>
-              <button type="buttom" onClick={handleOpen}>Close</button>
+              <button type="buttom" onClick={handleOpen}>
+                Close
+              </button>
               <button type="submit">POST</button>
             </div>
           </form>
@@ -209,6 +214,7 @@ function Post(){
               created={formatDate(comment.created)}
               author={comment.author}
               fetchData={fetchData}
+              isUser={isUser}
             />
           ))}
         </div>

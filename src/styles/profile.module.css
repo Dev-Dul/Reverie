@@ -49,11 +49,13 @@
 .back{
     border: 2px solid;
     border-radius: 25px;
+    backdrop-filter: blur(15px);
 }
 
 .back img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
     border-radius: 25px;
     filter: grayscale(100%);
     transition: all 1s ease;
@@ -128,6 +130,7 @@
     width: 100%;
     position: relative;
     font-size: 1.5rem;
+    scrollbar-width: none;
 }
 
 .tabContent{
@@ -138,6 +141,9 @@
     font-size: 1.5rem;
     transition: all 1s ease;
     transform: translateX(100vw);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    background: #f3f3f3;
 }
 
 .tabContent h2{

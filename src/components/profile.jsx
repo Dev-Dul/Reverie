@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import multiavatar from '@multiavatar/multiavatar';
 import Preview from './preview';
-import Prev from './commentPrev';
+import Prev from './commentprev';
 import Images from './images';
 
 function Profile(){
@@ -31,8 +31,10 @@ function Profile(){
     const svg = multiavatar(user.username);
     const dataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     const blogMatch = user.blogs.length === 0;
-    const Usercomments = user.blogs.comments  ? user.blogs.flatMap(blog => blog.comments).filter(comment => comment.author === user.username) : [];
-    console.log(user.blogs.body);
+    const isEmpty = user.blogs
+      .flatMap((blog) => blog.comments)
+      .filter((comment) => comment.author === user.username);
+    const Usercomments = isEmpty.length === 0  ? [] : isEmpty;
     const commentMatch = Usercomments.length === 0;
     const ImgIndex = Math.floor(Math.random() * Images.length);
 
@@ -56,7 +58,7 @@ function Profile(){
                     <button onClick={openPosts}>Posts</button>
                     <button onClick={openComments}>Comments</button>
                 </div>
-                <div className={styles.tab}>
+                <div className={styles.tabs}>
                     <div className={`${styles.tabContent} ${tab === 0 ? styles.activate : ''}`}>
                         {blogMatch ? (
                             <h2>You have'nt written any Reveries yet.</h2>
@@ -84,7 +86,7 @@ function Profile(){
                         ): (
                             <>
                                 {Usercomments.map((comment) => (
-                                    <Prev created={comment.created} body={comment.body}/>
+                                    <Prev created={formatDate(comment.created)} body={comment.body}/>
                                 ))}
                             </>
                         )}

@@ -32,11 +32,13 @@ function Header(){
                             {sidebar && <li style={{'--pos': '1'}}><button onClick={() => { navigate("/"); toggle()}}>Home</button></li> }
                             <li style={{'--pos': '2'}}><button onClick={() => { navigate("/profile"); toggle();} }>Profile</button></li>
                             <li style={{'--pos': '3'}}><button onClick={() => { navigate("/explore"); toggle();} }>Explore</button></li>
+                            <li style={{'--pos': '4'}}><button onClick={() => { navigate("/about"); toggle();} }>About</button></li>
                         </>
                     ): 
                      <>
                         <li style={{'--pos': '1'}}><button onClick={() => { navigate("/signup"); toggle();}}>Sign Up</button></li>
                         <li  style={{'--pos': '2'}}><button onClick={() =>{ navigate("/login"); toggle();}}>Log In</button></li>
+                        <li  style={{'--pos': '3'}}><button onClick={() =>{ navigate("/about"); toggle();}}>About</button></li>
                      </>
                     }
                 </ul>

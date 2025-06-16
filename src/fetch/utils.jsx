@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+const apiUrl = import.meta.env.VITE_API;
 
 // Sign Up, Login and Refresh Handlers
 export function useSignUp(){
@@ -9,7 +9,7 @@ export function useSignUp(){
     
     async function SignUp(username, password) {
       try {
-        const res = await fetch("http://localhost:3000/api/v1/signup", {
+        const res = await fetch(`${apiUrl}/api/v1/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export function useSignUp(){
 export function useLogIn(){
     async function logIn(username, password){
       try {
-        const res = await fetch("http://localhost:3000/api/v1/login", {
+        const res = await fetch(`${apiUrl}/api/v1/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -55,8 +55,6 @@ export function useLogIn(){
         const json = await res.json();
         localStorage.setItem("jwt", json.token);
         localStorage.setItem("refresh", json.refreshToken);
-        console.log("response received");
-        console.log(json);
         return json;
 
       }catch(err){
@@ -72,7 +70,7 @@ async function Refresh(){
     const token = localStorage.getItem("refresh");
     
     try {
-        const res = await fetch("http://localhost:3000/api/v1/refresh", {
+        const res = await fetch(`${apiUrl}/api/v1/refresh`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -97,7 +95,7 @@ async function rerun(id, flag, commentId = null, commentBody = null, body = null
   let res;
   switch(flag){
     case "delPost": 
-      res = await fetch(`http://localhost:3000/api/v1/blog/${id}/delete`, {
+      res = await fetch(`${apiUrl}/api/v1/blog/${id}/delete`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +105,7 @@ async function rerun(id, flag, commentId = null, commentBody = null, body = null
     break;
 
     case "editPost": 
-      res = await fetch(`http://localhost:3000/api/v1/blog/${id}/edit`, {
+      res = await fetch(`${apiUrl}/api/v1/blog/${id}/edit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +120,7 @@ async function rerun(id, flag, commentId = null, commentBody = null, body = null
 
     case "delComment":
         res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/comments/${commentId}/delete`,
+          `${apiUrl}/api/v1/blog/${id}/comments/${commentId}/delete`,
           {
             method: "POST",
             headers: {
@@ -136,7 +134,7 @@ async function rerun(id, flag, commentId = null, commentBody = null, body = null
 
     case "editComment":
         res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/comments/${commentId}/edit`,
+          `${apiUrl}/api/v1/blog/${id}/comments/${commentId}/edit`,
           {
             method: "POST",
             headers: {
@@ -165,7 +163,7 @@ export function useFetchPosts(){
     useEffect(() => {
         async function fetchData(){
             try{
-                const res = await fetch("http://localhost:3000/api/v1/blog/");
+                const res = await fetch(`${apiUrl}/api/v1/blog/`);
                 if(!res.ok) throw new Error('Failed to fetch');
                 const json = await res.json();
                 setData(json.posts);
@@ -189,7 +187,7 @@ export function useFetchPost(id){
 
     async function fetchData(id){
       try{
-        const res = await fetch(`http://localhost:3000/api/v1/blog/${id}`);
+        const res = await fetch(`${apiUrl}/api/v1/blog/${id}`);
         if(!res.ok) throw new Error("Failed to fetch");
         const json = await res.json();
         setData(json.post);
@@ -212,7 +210,7 @@ export function useFetchPost(id){
 export function useCreatePost(){
     async function createPost(title, text, id) {
       try {
-        let res = await fetch("http://localhost:3000/api/v1/blog/create", {
+        let res = await fetch(`${apiUrl}/api/v1/blog/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -245,7 +243,7 @@ export function useDeletePost(){
     async function deletePost(id) {
       try {
         let res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/delete`,
+          `${apiUrl}/api/v1/blog/${id}/delete`,
           {
             method: "POST",
             headers: {
@@ -281,7 +279,7 @@ export function useEditPost(){
 
     async function editPost(id, body){
         try {
-          let res = await fetch(`http://localhost:3000/api/v1/blog/${id}/edit`, {
+          let res = await fetch(`${apiUrl}/api/v1/blog/${id}/edit`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -316,7 +314,7 @@ export function UsePublishPost(){
     async function publishPost(id){
       try{
         const res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/publish`,
+          `${apiUrl}/api/v1/blog/${id}/publish`,
           {
             method: "POST",
             headers: {
@@ -346,7 +344,7 @@ export function useCreateComment(){
     async function createComment(id, body, author) {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/comments/create`,
+          `${apiUrl}/api/v1/blog/${id}/comments/create`,
           {
             method: "POST",
             headers: {
@@ -382,7 +380,7 @@ export function useEditComment(){
     async function editComment(id, commentId, commentBody) {
       try {
         let res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/comments/${commentId}/edit`,
+          `${apiUrl}/api/v1/blog/${id}/comments/${commentId}/edit`,
           {
             method: "POST",
             headers: {
@@ -425,7 +423,7 @@ export function useDeleteComment(){
     async function delComment(id, commentId){
       try{
         let res = await fetch(
-          `http://localhost:3000/api/v1/blog/${id}/comments/${commentId}/delete`,
+          `${apiUrl}/api/v1/blog/${id}/comments/${commentId}/delete`,
           {
             method: "POST",
             headers: {

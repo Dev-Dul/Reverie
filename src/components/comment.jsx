@@ -5,7 +5,7 @@ import { AuthContext } from '../App';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-function Comment({ body, id, postId, created, author, fetchData }){
+function Comment({ body, id, postId, created, author, fetchData, isUser }){
   const { user } = useContext(AuthContext);
   const [edit, setEdit] = useState(false);
   const { data, loading, error, delComment } = useDeleteComment();
@@ -75,7 +75,7 @@ function Comment({ body, id, postId, created, author, fetchData }){
         ) : (
           <p>{body}</p>
         )}
-        {user && (
+        {isUser && (
           <div className={styles.action}>
             {!edit && (
               <>
