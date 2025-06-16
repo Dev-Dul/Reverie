@@ -3,11 +3,8 @@ const apiUrl = import.meta.env.VITE_API;
 
 // Sign Up, Login and Refresh Handlers
 export function useSignUp(){
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     
-    async function SignUp(username, password) {
+    async function SignUp(username, password){
       try {
         const res = await fetch(`${apiUrl}/api/v1/signup`, {
           method: "POST",
@@ -20,21 +17,20 @@ export function useSignUp(){
           }),
         });
 
-        console.log(res.status);
         if(!res.ok){
           const errData = await res.json();
-          throw new Error(errData.message);
+          throw new Error(errData);
         } 
+
         const json = await res.json();
-        setData(json);
+        return json;
+
       }catch(err){
-        setError(err.message);
-      }finally{
-        setLoading(false);
+        throw err;
       }
     }
 
-    return { data, loading, error, SignUp };
+    return { SignUp };
 }
 
 export function useLogIn(){

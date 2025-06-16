@@ -8,21 +8,31 @@ import nine from  "../assets/Img/nine.png";
 import one from  "../assets/Img/one.png";
 
 function SignUp(){
-    const { data, loading, error, SignUp } = useSignUp();
+    const { SignUp } = useSignUp();
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
+    const successMessage = "Sign Up Successful. Just a moment as we redirect you to the Login Page.";
+
 
     
     async function onSubmit(formdata){
-        await SignUp(formdata.username, formdata.password);
-        if(data){
-            toast.success(data);
-            navigate("/login");
-        }
+        const SignUpPromise = SignUp(formdata.username, formdata.password);
 
-        if(error) toast.error(error)
-        console.log("Submitted:", formdata);
+        toast.promise(SignUpPromise, {
+            loading: "Just a moment...",
+            success: (result) => {
+                if(result){
+                    navigate("/login", { replace: true });    // Redirect to the profile page
+                }
+                return successMessage; // Return the message to display in the toast
+            },
+            error: (err) => {
+                return `Sign Up Failed. with error: ${err.message}`;
+            },
+        });
+
     }
+    
 
     return(
         <div className={styles.wrapper}>
