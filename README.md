@@ -1,47 +1,67 @@
-# ReverieEngine
+# Reverie
 
-The Odin Project's Blog API Project.
+My Submission for The Odin Project's Blog API Project.
+
+![Home Page](./src/assets/Showcase/one.png)
 
 ## Details
 
-This project is part of the Odin Project's Curriculum. It is meant for learners to practice what they've learnt in the API Basics Module (Under the NodeJS course) by building a jamstack based Blog app that decouples the frontend and backend into seperate parts, with the backend being an Express API which uses JWT to protect sensitive routes. This project is the Backend API which implements authentication using passport.js(jwt), as well as uses other tools including Cors(to enable cross-origin access),  Express, Express-Validator, Postgres, and bcrypt among others. Areas of practice include jsonwebtokens(JWT), authentication, routing, API response, validation, postgres set-up and manipulation techniques, e.t.c.
+This project is part of the Odin Project's Curriculum. It is meant for learners to practice what they've learnt in the API Basics Module (Under the NodeJS course) by building a jamstack based Blog app that decouples the frontend and backend into seperate parts, with the backend being an Express API which uses JWT to protect sensitive routes. This project is the frontend which is built using react and uses react-router for routing. The project's backend reliant features like fetching, creating, editing, publishing and deleting a blog post are provided by the ReverieEngine API, which is fully decoupled from the frontend and hosted on a different platform. 
 
 ## Features
-   Features of ReverieEngine include:
+   Features of Reverie include:
 
-   * Routing - The ReverieEngine Provides Access to numerous endpoints.
+   * Sleek Minimalist UI - I've taken the time to build a sleek, minimalisic UI for Reverie that feels easy on the eyes while at the same time being aesthetically pleasing.
 
-   * Security - The API uses JWT to secure protected routes. These routes (endpoints) can only be accessed by users with valid access tokens.
+   * User Account - Reverie has a sign up page that allows users to create accounts, login and access privileges such as editing, publishing and deleting blog posts and comments. 
 
-   * Clear API Responses: The API provides clear non-ambiguous responses to users whether in cases  of success or failure.
+   * Smooth Page Transitions: Reverie implements a smooth and efficient page transition animation across all pages.
 
-   * Data persistence: The app uses postgres to store and retrieve data.
+   * Post CRUD: Reveries implements all CRUD functionality for blog posts on the platform.
 
-   * ORM based: The app uses Prisma ORM to interface with and manipulate the postgres db instead of using raw SQL.
+   * Comment CRUD: Reveries implements all CRUD functionality for comments on the platform.
 
-   * The API features all CRUD functionality for the Posts as well as the comments within them.
 
-## Protected Routes
-    
-   * /api/v1/blog/:postId/edit - For editing posts.
+## Showcase
 
-   * /api/v1/blog/:postId/delete - For deleting posts.
+   More Images of Reverie:
 
-   * /api/v1/blog/:postId/comments/:commentId/edit - For Editing comments.
+   * Home Page:
 
-   * /api/v1/blog/:postId/comments/:commentId/delete - For Deleting Comments.
+   ![Home Page](./src/assets/Showcase/one.png)
 
-## Unprotected Routes.
+   * Sign Up Page:
 
-   *  /api/v1/blog/ - For fetching all blog posts.
+   ![SignUp Page](./src/assets/Showcase/signup.png)
 
-   * /api/v1/blog/:postId - For fetching a specific blog post by Id.
+   * Login Page:
 
-   * /api/v1/blog/create - For creating a blog post.
+   ![Login Page](./src/assets/Showcase/login.png)
 
-   * /api/v1/blog/:postId/publish - For publishing a blog post.
+   * Profile Page:
 
-   * /api/v1/blog/:postId/comments/create - For creating a comment under a blog post.
+   ![Profile Page](./src/assets/Showcase/profile.png)
+
+   * Explore Page:
+
+   ![Explore Page](./src/assets/Showcase/explore.png)
+
+   * Post Page:
+
+   ![Post Page](./src/assets/Showcase/post.png)
+
+
+   ## Vist
+
+   Kindly use the link below to visit Reverie:
+
+
+
+
+
+
+
+
 
    
  
