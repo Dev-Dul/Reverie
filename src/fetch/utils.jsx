@@ -19,7 +19,7 @@ export function useSignUp(){
 
         if(!res.ok){
           const errData = await res.json();
-          throw new Error(errData);
+          throw new Error(errData.message);
         } 
 
         const json = await res.json();
