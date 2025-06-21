@@ -3,6 +3,11 @@
     src: url("../assets/Fonts/SpringtimeFlowersRegular-8M1mz.otf");
 }
 
+@font-face {
+    font-family: "letter";
+    src: url("../assets/Fonts/BrotherSignature-7BWnK.otf");
+}
+
 .wrapper{
     min-height: 100vh;
     width: 100%;
@@ -38,6 +43,7 @@
 
 .left p{
     font-size: 1.3rem;
+    font-family: "letter";
 }
 
 

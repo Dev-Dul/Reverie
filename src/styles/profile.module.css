@@ -17,6 +17,7 @@
     width: 100%;
     font-weight: bolder;
     font-family: "ketta";
+    /* overflow: hidden; */
 }
 
 .hero{
@@ -125,35 +126,38 @@
     outline: none;
 }
 
-.tabs{
-    height: auto;
+
+.tabs {
+    height: 70vh; 
     width: 100%;
-    position: relative;
     font-size: 1.5rem;
-    scrollbar-width: none;
+    overflow-y: hidden; 
+    position: relative; 
 }
 
-.tabContent{
-    height: auto;
+.tabContent {
+    height: 100%; 
     width: 100%;
-    position: absolute;
     font-weight: bolder;
     font-size: 1.5rem;
-    transition: all 1s ease;
-    transform: translateX(100vw);
-    overflow-y: scroll;
-    scrollbar-width: none;
+    overflow-y: auto; 
+    scrollbar-width: thin; 
     background: #f3f3f3;
+    display: none;
+}
+
+.activate {
+    display: block; 
 }
 
 .tabContent h2{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 0;
 }
 
-
-.activate{
-    opacity: 1;
-    transform: translate(0);
+.tabContent p{
+    font-size: 1rem;
 }
+
+
 

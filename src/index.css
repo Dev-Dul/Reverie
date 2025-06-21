@@ -3,6 +3,11 @@
   src: url("../src/assets/Fonts/BrotherSignature-7BWnK.otf");
 }
 
+@font-face {
+  font-family: "Bucklane";
+  src: url("../src/assets/Fonts/BucklaneScriptPERSONALUSE-Regular.ttf");
+}
+
 :root {
   font-family: "letter", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -61,4 +66,8 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+h2, h3, p, textarea, input{
+  font-family: "Bucklane";
 }

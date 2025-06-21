@@ -102,7 +102,6 @@ function Post(){
 
   if(load) return <Loader />
   if(err) return <Error message={err} />
-  console.log(info);
   const isUser = user ? info.authorId === user.id : null;
 
   return (
